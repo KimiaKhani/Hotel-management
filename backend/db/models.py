@@ -35,3 +35,17 @@ class Room_User(Base):
     room_id = Column(Integer, ForeignKey('room.id'))
 
 
+class Reservation(Base):
+    __tablename__ = "reservations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    room_id = Column(Integer, ForeignKey("room.id"))
+    start_date = Column(DateTime)
+    end_date = Column(DateTime)
+    status = Column(String, default="pending")
+
+    user = relationship("User")
+    room = relationship("Room")
+
+

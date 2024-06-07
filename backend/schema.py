@@ -60,3 +60,18 @@ class RoomDisplay(BaseModel):
 
 
 
+class ReservationBase(BaseModel):
+    user_id: int
+    room_id: int
+    start_date: datetime
+    end_date: datetime
+
+class ReservationCreate(ReservationBase):
+    pass
+
+class Reservation(ReservationBase):
+    id: int
+    status: str
+
+    class Config:
+        from_attributes = True
