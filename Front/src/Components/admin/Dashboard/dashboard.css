@@ -1,0 +1,38 @@
+@font-face {
+    font-family: iran;
+    src: url("../assets/iran.ttf");
+  }
+  body{
+    font-family: iran;
+    background-color: #e7f5f2; 
+  }
+
+  :root {
+    --black: #000;
+    --blueGradiant: #3234A8;
+    --blue: #a0d6b4;
+    --secondary: #007DD7;
+    --bluelight: #0098CF;
+    --green:  #00B1BA;
+    --greenlight:  #0a8670;
+    --green-20:#C6FCEC;
+   
+  }
+  
+  .btn-success {
+    background-color:var(--green-20); 
+  }
+  .dash:hover{
+    background-color: #e7f5f2;
+  }
+  .btn-light {
+    background-color: #f8f9fa; 
+  }
+  
+  .bg-nav{
+    background-color: var(--blue);
+  }
+  .bg-glight{
+    color: var(--greenlight);
+    font-weight: 600;
+  }
