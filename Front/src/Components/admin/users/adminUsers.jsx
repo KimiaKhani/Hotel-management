@@ -17,20 +17,20 @@ const AdminAllCustomersPage = () => {
         <div className="card-header bg-light text-dark">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="mb-0">Customers</h5>
-            <button className="btn btn-outline-success">View All</button>
+            <button className="btn btn-outline-secondary">View All</button>
           </div>
         </div>
         <div className="card-body">
           <div className="table-responsive">
             <table className="table table-striped table-hover">
-              <thead className="bg-light">
-                <tr>
-                  <th scope="col">Booking ID</th>
-                  <th scope="col">Customer ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Phone Number</th>
-                  <th scope="col">E-mail</th>
+              <thead className="text-white">
+                <tr >
+                  <th className="text-white" scope="col">Booking ID</th>
+                  <th className="text-white" scope="col">Customer ID</th>
+                  <th className="text-white" scope="col">Name</th>
+                  <th className="text-white" scope="col">Last Name</th>
+                  <th className="text-white" scope="col">Phone Number</th>
+                  <th className="text-white" scope="col">E-mail</th>
                 </tr>
               </thead>
               <tbody>

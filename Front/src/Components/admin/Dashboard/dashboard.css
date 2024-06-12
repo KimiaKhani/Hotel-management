@@ -10,16 +10,17 @@
     background-color:var(--green-20); 
   }
   .dash:hover{
-    background-color: #e7f5f2;
-  }
-  .btn-light {
-    background-color: #f8f9fa; 
+    background-color: var(--bhover);
   }
   
+  .btn-outline-light:hover{
+    background-color: var(--bhover);
+    color:#f8f9fa;
+  }
   .bg-nav{
     background-color: var( --black);
   }
   .bg-glight{
-    color: #a0d6b4;
+    color: var(--admin-text);
     font-weight: 600;
   }

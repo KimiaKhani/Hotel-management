@@ -1,12 +1,20 @@
 import React from 'react';
 
-const TextInput = ({ label, placeholder, name, className, type = "text" }) => {
-  return (
-    <div className={`mb-3 ${className}`}>
-      <label htmlFor={name} className="form-label">{label}</label>
-      <input type={type} className="form-control" id={name} name={name} placeholder={placeholder} />
-    </div>
-  );
-};
+// Example TextInput component
+const TextInput = ({ name, type, placeholder, className, value, onChange }) => (
+  <div className={className}>
+    <label htmlFor={name}>{placeholder}</label>
+    <input 
+      type={type || 'text'} 
+      id={name} 
+      name={name} 
+      value={value} 
+      onChange={onChange} 
+      placeholder={placeholder} 
+      className="form-control" 
+    />
+  </div>
+);
+
 
 export default TextInput;

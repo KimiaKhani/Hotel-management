@@ -1,13 +1,65 @@
-import React from "react";
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { FaUser, FaLock } from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "./hero-image.png"
 import './login.css'; 
+import axios from 'axios'
+import qs from 'qs'
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const navigate=useNavigate();
+
+ 
+const elahe="admin"
+const passpasspass="admin"
+
+  const handleClickLogin = async() =>{
+
+   
+    // try {
+    //   const response = await axios.post('http://127.0.0.1:8000/user/create', 
+    //     {
+    //       "username": elahe,
+    //       "email": "lahe@gmail.com",
+    //       "password": passpasspass
+        
+    //   }, {
+    //     headers: {
+    //       'Content-Type': 'application/json', 
+    //       'Accept': 'application/json', 
+    //     },
+    //   }
+    // );
+    // console.log(response);
+    // } catch (error) {
+    //   console.log(error)
+    // }
+
+    const response = await axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/token',
+      data: qs.stringify({
+        username: 'admin',
+        password: 'admin'
+      }),
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+    });
+
+    // Pass the token in the state
+    navigate('/admin', { 
+      state: { 
+        token: response.data.access_token
+      } 
+    });
+    
+  }
   return (
-    <section className="container mt-5 hero-wrapper">
+    <section className="container mt-5 hero-wrapper" >
       <div className="row align-items-center justify-content-center hero-container">
         
         {/* Left side */}
@@ -25,7 +77,7 @@ const Login = () => {
               <h1 className="ms-3">WelcomeBack</h1>
             </div>
             <form>
-              <h1>Login</h1>
+              <h2>Login</h2>
               <div className="mb-3 ">
                 <input type="text" className="form-control" placeholder="Username" required />
                 <FaUser className="position-absolute" style={{ right: "10px", top: "10px" }} />
@@ -43,7 +95,7 @@ const Login = () => {
                 <a href="#">Forgot password?</a>
               </div>
 
-              <button className="btn btn-primary w-100 " type="submit">Login</button>
+              <button className="btn btn-primary w-100 " type="submit" onClick={() => handleClickLogin()}>Login</button>
 
               <div className="text-center mt-3 register-link">
                 Don't have an account? <a href="#">Register</a>

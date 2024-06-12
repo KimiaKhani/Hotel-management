@@ -28,11 +28,11 @@ const AdminAllRoomsPage = () => {
             <table className="table table-striped table-hover">
               <thead className="bg-light">
                 <tr>
-                  <th scope="col">Room ID</th>
-                  <th scope="col">Room Type</th>
-                  <th scope="col">Bed Count</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Status</th>
+                  <th className="text-white" scope="col">Room ID</th>
+                  <th className="text-white"scope="col">Room Type</th>
+                  <th className="text-white" scope="col">Bed Count</th>
+                  <th className="text-white" scope="col">Price</th>
+                  <th className="text-white" scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>

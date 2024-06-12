@@ -2,3 +2,14 @@
 .ta{
     width: 70vh;
 }
+.bh:hover{
+    background-color:rgba(0, 126, 133);
+    color:#f8f9fa;
+  }
+
+  .in{
+    background-color:  rgba(0, 126, 133,0.2);
+  }
+  .in::placeholder{
+    color: var(--black)
+  }
