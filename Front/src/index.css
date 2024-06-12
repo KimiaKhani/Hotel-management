@@ -1,0 +1,15 @@
+:root {
+    --black: rgb(34, 40, 49);
+    --blueGradiant: #3234A8;
+    --blue: #a0d6b4;
+    --secondary: #007DD7;
+    --bluelight: #0098CF;
+    --green:  #00B1BA;
+    --greenlight:  #0a8670;
+    --green-20:#C6FCEC;
+   
+  }
+  body{
+    font-family: iran;
+    background-color: rgb(34, 40, 49,0.1);
+  }

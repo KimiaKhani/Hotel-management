@@ -2,18 +2,29 @@
   font-family: iran;
   src: url("../assets/iran.ttf");
 }
-:root {
-  --black: #000;
-  --blueGradiant: #3234A8;
-  --blue: #005DCB;
-  --secondary: #007DD7;
-  --bluelight: #0098CF;
-  --green:  #00B1BA;
-  --greenlight:  #00C6A1;
-  --green-20:#C6FCEC;
- 
-}
+
 
 body{
   font-family: iran;
+  background-color: #e7f5f2;
+}
+
+.App {
+  position: relative;
+  overflow-x: clip;
+}
+
+/*This selector is refer to the div which className is white-gradient*/
+.App>:nth-child(1) {
+  background: var(--black);
+  position: relative;
+}
+
+.white-gradient {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(255, 255, 255, .522);
+  filter: blur(100px);
+  border-radius: 100px;
 }

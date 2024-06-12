@@ -1,23 +1,10 @@
-@font-face {
-    font-family: iran;
-    src: url("../assets/iran.ttf");
-  }
+
   body{
     font-family: iran;
-    background-color: #e7f5f2; 
-  }
-
-  :root {
-    --black: #000;
-    --blueGradiant: #3234A8;
-    --blue: #a0d6b4;
-    --secondary: #007DD7;
-    --bluelight: #0098CF;
-    --green:  #00B1BA;
-    --greenlight:  #0a8670;
-    --green-20:#C6FCEC;
    
   }
+
+
   
   .btn-success {
     background-color:var(--green-20); 
@@ -30,9 +17,9 @@
   }
   
   .bg-nav{
-    background-color: var(--blue);
+    background-color: var( --black);
   }
   .bg-glight{
-    color: var(--greenlight);
+    color: #a0d6b4;
     font-weight: 600;
   }

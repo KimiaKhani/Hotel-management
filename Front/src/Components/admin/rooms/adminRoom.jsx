@@ -25,7 +25,7 @@ const AdminAllRoomsPage = () => {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table">
+            <table className="table table-striped table-hover">
               <thead className="bg-light">
                 <tr>
                   <th scope="col">Room ID</th>
