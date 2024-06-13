@@ -31,7 +31,7 @@ const AdminDashboard = () => {
       case 3:
         return <AdmingAddRoomsPage token={token}/>;
       default:
-        return <h1>سلام... 👋 <br/>به پنل ادمین خوش اومدی</h1>;
+        return <h1 className="fw-bold">hi... 👋 <br/>Welcome to Admin Panel</h1>;
     }
   };
 

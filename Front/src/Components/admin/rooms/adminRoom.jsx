@@ -1,22 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import './adminRooms.css';
 
-const tableDataRows = [
-  [ "2", "Double", "2", 2000000, "R"],
-  [ "4", "Single", "1", 2000000, "not R"],
-  ["2", "Single", "2", 2000000, "R"],
-  ["1", "VIP", "2", 2000000, "R"],
-  [ "4", "Double", "1", 2000000, "not R"],
-  ["2", "Single", "2", 2000000, "R"],
-  ["2", "VIP", "2", 2000000, "R"],
-  ["2", "Single", "2", 2000000, "R"],
-];
-
 const AdminAllRoomsPage = () => {
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch rooms data from backend
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/room/get_all_rooms'); // Adjust the URL to your API endpoint
+        setRooms(response.data); // Assume the API response is an array of rooms
+        setLoading(false); // Set loading to false once data is fetched
+      } catch (error) {
+        setError(error.message);
+        setLoading(false); // Stop loading if there's an error
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
   return (
     <div className="container mt-5">
-      <div className="card shadow-sm">
+      <div className="card shadow-sm round-5">
         <div className="card-header bg-light text-dark">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="mb-0">Rooms</h5>
@@ -25,28 +34,38 @@ const AdminAllRoomsPage = () => {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table table-striped table-hover">
-              <thead className="bg-light">
-                <tr>
-                  <th className="text-white" scope="col">Room ID</th>
-                  <th className="text-white"scope="col">Room Type</th>
-                  <th className="text-white" scope="col">Bed Count</th>
-                  <th className="text-white" scope="col">Price</th>
-                  <th className="text-white" scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableDataRows.map((row, index) => (
-                  <tr key={index} className="bg-white">
-                    {row.map((cell, cellIndex) => (
-                      <td key={cellIndex} className="align-middle">
-                        {cellIndex === 5 ? `${Number(cell).toLocaleString()} IRR` : cell}
-                      </td>
-                    ))}
+            {loading ? (
+              <div className="text-center">
+                <p>Loading...</p>
+              </div>
+            ) : error ? (
+              <div className="text-center">
+                <p>Error: {error}</p>
+              </div>
+            ) : (
+              <table className="table table-striped table-hover">
+                <thead className="bg-light">
+                  <tr>
+                    <th className="text-white" scope="col">Room ID</th>
+                    <th className="text-white" scope="col">Room Type</th>
+                    <th className="text-white" scope="col">Bed Count</th>
+                    <th className="text-white" scope="col">Price</th>
+                    <th className="text-white" scope="col">Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rooms.map((room, index) => (
+                    <tr key={index} className="bg-white">
+                      <td className="align-middle">{room.id}</td>
+                      <td className="align-middle">VIP</td>
+                      <td className="align-middle">{room.bed_number}</td>
+                      <td className="align-middle">{Number(room.price).toLocaleString()} IRR</td>
+                      <td className="align-middle">{room.is_taken==false ? "no" : "yes"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>

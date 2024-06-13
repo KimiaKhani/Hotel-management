@@ -13,7 +13,7 @@ const tableDataRows = [
 const AdminAllCustomersPage = () => {
   return (
     <div className="container mt-5">
-      <div className="card shadow-sm">
+      <div className="card shadow-sm round-5">
         <div className="card-header bg-light text-dark">
           <div className="d-flex justify-content-between align-items-center">
             <h5 className="mb-0">Customers</h5>

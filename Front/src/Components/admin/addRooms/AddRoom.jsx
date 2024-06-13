@@ -56,9 +56,9 @@ const AdmingAddRoomsPage = ({token}) => {
   
     return (
       <div className="container py-4 col-md-8">
-        <h1 className="text-center mb-4">Add Room</h1>
-        <div className="card">
-          <form className="card-body row g-3">
+        <h1 className="text-center mb-4 fw-bold">Add Room</h1>
+        <div className="card round-5">
+          <form className="card-body row g-3 ">
             {INPUTS.map((input) => (
               <TextInput key={input.name} {...input} value={formData[input.name]} onChange={handleChange} />
             ))}
