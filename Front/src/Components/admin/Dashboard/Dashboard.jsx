@@ -5,6 +5,7 @@ import AdminAllCustomersPage from "../users/adminUsers";
 import AdmingAddRoomsPage from "../addRooms/AddRoom";
 import { useLocation } from 'react-router-dom';
 import Room from "../../emptyRooms/Rooms";
+import SearchBox from "../rooms/Searchbar";
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
       case 4:
         return <Room />;
       default:
-        return <h1 className="fw-bold">hi... 👋 <br/>Welcome to Admin Panel</h1>;
+        return <h1 className="fw-bold" style={{marginTop:'20vh'}}>hi... 👋 <br/>Welcome to Admin Panel</h1>;
     }
   };
 
@@ -61,9 +62,15 @@ const AdminDashboard = () => {
           <button className={`btn btn-outline-light btn-sm mb-1 w-100 ${ask === 3 ? 'btn-active' : ''}`} onClick={handleClickAddRoom}>
             Add rooms
           </button>
+         
         </div>
+        
       </div>
+   
       <div className="content-area">
+      <div className="d-flex  justify-content-center">
+     <SearchBox></SearchBox>
+     </div>
         {renderContent()}
       </div>
     </div>

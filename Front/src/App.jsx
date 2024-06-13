@@ -11,10 +11,10 @@ function App() {
     <>
        <BrowserRouter>
         <Routes>
-            {/* <Route path='/' element={<Rooms/>} /> */}
+            <Route path='/' element={<SearchBar/>} />
             <Route path='/search' element={< SearchBar/>} />
             <Route path='/admin' element={< AdminDashboard />} />
-            <Route path='/' element={< SignIn/>} />
+            <Route path='/Login' element={< SignIn/>} />
         </Routes>
       </BrowserRouter>
   
