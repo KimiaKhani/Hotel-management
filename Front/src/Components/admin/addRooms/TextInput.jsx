@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Example TextInput component
+
 const TextInput = ({ name, type, placeholder, className, value, onChange }) => (
   <div className={className}>
     <label htmlFor={name}>{placeholder}</label>

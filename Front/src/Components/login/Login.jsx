@@ -13,30 +13,9 @@ const Login = () => {
   const navigate=useNavigate();
 
  
-const elahe="admin"
-const passpasspass="admin"
+
 
   const handleClickLogin = async() =>{
-
-   
-    // try {
-    //   const response = await axios.post('http://127.0.0.1:8000/user/create', 
-    //     {
-    //       "username": elahe,
-    //       "email": "lahe@gmail.com",
-    //       "password": passpasspass
-        
-    //   }, {
-    //     headers: {
-    //       'Content-Type': 'application/json', 
-    //       'Accept': 'application/json', 
-    //     },
-    //   }
-    // );
-    // console.log(response);
-    // } catch (error) {
-    //   console.log(error)
-    // }
 
     const response = await axios({
       method: 'post',
