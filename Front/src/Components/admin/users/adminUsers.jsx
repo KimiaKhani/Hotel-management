@@ -20,7 +20,7 @@ const AdminAllCustomersPage = () => {
             <button className="btn btn-outline-secondary">View All</button>
           </div>
         </div>
-        <div className="card-body">
+        <div className="card-body " >
           <div className="table-responsive">
             <table className="table table-striped table-hover">
               <thead className="text-white">

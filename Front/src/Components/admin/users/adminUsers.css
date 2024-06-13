@@ -1,3 +1,5 @@
+    
+
 @font-face {
   font-family: iran;
   src: url("../assets/iran.ttf");
@@ -13,4 +15,5 @@
 
 .head-txt{
   color: var(--table-text);
-}
+ }
+ 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
+
 :root {
     --black: rgb(34, 40, 49);
     --blueGradiant: #3234A8;
@@ -12,10 +14,6 @@
     --table-text:rgb(34, 40, 49,0.1);
    
   }
-  /* body{
-    font-family: iran;
-    background-color:  rgb(34, 40, 49,0.1)
-  } */
 
   body {
     background-color: #c9d6ff;
