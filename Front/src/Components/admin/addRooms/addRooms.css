@@ -37,4 +37,20 @@
   }
 }
 
+/* YourStylesheetName.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.alert.alert-dark {
+  animation-name: fadeIn;
+  animation-duration: 1s; /* Adjust the duration as needed */
+  animation-fill-mode: forwards; /* Ensures the element remains visible after the animation completes */
+}
+
 

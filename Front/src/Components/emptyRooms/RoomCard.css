@@ -1,13 +1,15 @@
  
-@font-face {
-  font-family: iran;
-  src: url("../assets/iran.ttf");
-}
 
 .card {
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2),
+               6px 6px 10px rgba(0, 0, 0, 0.1);
+  }
+  .ar{
+    
+    color: var(--dark);
   }
   
   .card-body {
@@ -29,9 +31,14 @@
   
  
   .b {
-    font-family: iran ;
-    background-color: var(--green);
+   
+    /* background-color: var(--green); */
+    background-color:rgb(34, 40, 49);
     color: aliceblue;
     width: 30vh;
+  }
+  .b:hover{
+    background-color:rgb(34, 40, 49,0.5);
+    color: aliceblue;
   }
   

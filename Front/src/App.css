@@ -17,7 +17,6 @@ body{
   overflow-x: clip;
 }
 
-/*This selector is refer to the div which className is white-gradient*/
 .App>:nth-child(1) {
   background: var(--black);
   position: relative;

@@ -11,12 +11,12 @@ const AdminAllRoomsPage = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/room/get_all_rooms'); // Adjust the URL to your API endpoint
-        setRooms(response.data); // Assume the API response is an array of rooms
-        setLoading(false); // Set loading to false once data is fetched
+        const response = await axios.get('http://127.0.0.1:8000/room/get_all_rooms'); 
+        setRooms(response.data); 
+        setLoading(false); 
       } catch (error) {
         setError(error.message);
-        setLoading(false); // Stop loading if there's an error
+        setLoading(false); 
       }
     };
 

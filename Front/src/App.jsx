@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
-import Rooms from './Components/Rooms/Rooms'
 import AdminDashboard from './Components/admin/Dashboard/Dashboard'
-import Login from './Components/login/Login'
 import SignIn from './Components/SignIn/SignIn'
+import SearchBar from './Components/admin/rooms/Searchbar'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -12,10 +11,10 @@ function App() {
     <>
        <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Rooms/>} />
-            <Route path='/Login' element={< Login/>} />
+            {/* <Route path='/' element={<Rooms/>} /> */}
+            <Route path='/search' element={< SearchBar/>} />
             <Route path='/admin' element={< AdminDashboard />} />
-            <Route path='/Login2' element={< SignIn/>} />
+            <Route path='/' element={< SignIn/>} />
         </Routes>
       </BrowserRouter>
   
