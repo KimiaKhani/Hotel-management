@@ -1,0 +1,10 @@
+@font-face {
+    font-family: iran;
+    src: url("../assets/iran.ttf");
+  }
+ 
+  .room-title{
+    font-family: iran;
+    display: flex;
+    justify-content: center;
+  }
