@@ -1,8 +1,9 @@
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db import get_db
 from schema import ReservationCreate, Reservation
-from db.db_reservation import create_reservation, get_reservation
+from db.db_reservation import create_reservation, get_all_reservations, get_reservation
 
 
 router = APIRouter(tags=['Reservation'])
@@ -17,3 +18,10 @@ def read_reservation(reservation_id: int, db: Session = Depends(get_db)):
     if db_reservation is None:
         raise HTTPException(status_code=404, detail="Reservation not found")
     return db_reservation
+
+
+
+@router.get("/reservations", response_model=List[Reservation])
+def read_all_reservations(db: Session = Depends(get_db)):
+    reservations = get_all_reservations(db)
+    return reservations

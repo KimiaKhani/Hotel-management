@@ -11,3 +11,7 @@ def create_reservation(db: Session, reservation: ReservationCreate):
 
 def get_reservation(db: Session, reservation_id: int):
     return db.query(Reservation).filter(Reservation.id == reservation_id).first()
+
+
+def get_all_reservations(db: Session):
+    return db.query(Reservation).all()
