@@ -7,17 +7,22 @@ from typing import Optional
 
 class UserBase(BaseModel):
     username: str
+    first_name: str
+    last_name: str
     email: str
     password: str
 
 
 class UserDisplay(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
     username: str
     email: str
-    # room_id : int
+
 
     class Config:
-        from_orm = True
+        orm_mode = True
 
 
 class UserAuth(BaseModel):
@@ -27,7 +32,7 @@ class UserAuth(BaseModel):
 
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 
@@ -38,7 +43,7 @@ class User(BaseModel):
     email : str
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class RoomBase(BaseModel):
@@ -46,7 +51,7 @@ class RoomBase(BaseModel):
     price : int
 
     class Config:
-        from_orm = True
+        orm_mode = True
 
 
 class RoomDisplay(BaseModel):
@@ -56,22 +61,25 @@ class RoomDisplay(BaseModel):
     is_taken : bool
 
     class Config:
-        from_orm = True
+        orm_mode = True
 
 
 
 class ReservationBase(BaseModel):
     user_id: int
     room_id: int
-    start_date: datetime
-    end_date: datetime
+    check_in: datetime
+    check_out: datetime
 
 class ReservationCreate(ReservationBase):
-    pass
+    first_name: str
+    last_name: str
 
 class Reservation(ReservationBase):
     id: int
     status: str
+    first_name: str
+    last_name: str
 
     class Config:
-        from_attributes = True
+        orm_mode = True
