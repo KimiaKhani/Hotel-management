@@ -52,8 +52,8 @@ def get_room_by_admin(id: int, db: Session, admin_id: int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='room not found.')
 
     if room.is_taken == True :
-        user = db.query(Room_User).filter(room.room_id == Room_User.room_id).first()
-    return room , user.username
+        user = db.query(Room_User).filter(room.id == Room_User.room_id).first()
+    return room 
 
 
 def get_user_by_admin(name: str, db: Session, admin_id: int):
