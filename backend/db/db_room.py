@@ -53,7 +53,7 @@ def get_room_by_admin(id: int, db: Session, admin_id: int):
 
     if room.is_taken == True :
         user = db.query(Room_User).filter(room.room_id == Room_User.room_id).first()
-    return room , user.username
+    return room , user.meli_code
 
 
 def get_user_by_admin(name: str, db: Session, admin_id: int):
@@ -61,7 +61,7 @@ def get_user_by_admin(name: str, db: Session, admin_id: int):
     if user.is_admin == False:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
-    user = db.query(User).filter(User.username == name).first()
+    user = db.query(User).filter(User.meli_code == name).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='user not found.')
 
@@ -69,7 +69,7 @@ def get_user_by_admin(name: str, db: Session, admin_id: int):
     if not room:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this user hasn't booked any room")
     
-    return room , user.username
+    return room , user.meli_code
 
 
 
@@ -87,3 +87,6 @@ def get_rooms_by_bednumber(bed_number : int, db:Session):
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='there is no empty room!')
         return room
 
+
+def get_all_rooms(db: Session):
+    return db.query(Room).all()

@@ -3,7 +3,7 @@ from fastapi import Depends, status
 from fastapi.exceptions import HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.db_user import get_user_by_username
+from db.db_user import get_user_by_meli_code
 from typing import Optional
 from datetime import datetime, timedelta
 from jose import jwt
@@ -38,15 +38,15 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 
     try:
         _dict = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        username = _dict.get('sub')
+        meli_code = _dict.get('sub')
 
-        if not username:
+        if not meli_code:
             raise error_credential
 
     except JWTError:
         raise error_credential
 
-    user = get_user_by_username(username, db)
+    user = get_user_by_meli_code(meli_code, db)
 
     return user
 
@@ -59,16 +59,16 @@ def get_current_admin(token: str = Depends(oauth2_scheme), db: Session = Depends
 
     try:
         _dict = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        username = _dict.get('sub')
+        meli_code = _dict.get('sub')
 
-        if not username:
+        if not meli_code:
             raise error_credential
 
 
     except JWTError:
         raise error_credential
 
-    user = get_user_by_username(username, db)
+    user = get_user_by_meli_code(meli_code, db)
 
     if user.is_admin == False:
         raise HTTPException(
