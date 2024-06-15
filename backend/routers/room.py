@@ -12,7 +12,12 @@ router = APIRouter(prefix='/room', tags=['room'])
 
 @router.get('/get_all_rooms', response_model=List[RoomDisplay])
 def get_all_rooms(db: Session = Depends(get_db)):
-    return db_room.get_all_rooms_by_user(db)
+    return db_room.get_all_rooms_by_admin(db)
+
+@router.get('/get_notreserved_rooms', response_model=List[RoomDisplay])
+def get_all_rooms(db: Session = Depends(get_db)):
+    return db_room.get_notreserved_rooms_by_admin(db)
+
 
 @router.get('/get_rooms_by_bednumber/{number}', response_model=List[RoomDisplay])
 def get_rooms_by_bednumber(bed_num : int, db: Session = Depends(get_db)):

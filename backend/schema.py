@@ -9,6 +9,7 @@ class UserBase(BaseModel):
     meli_code: str
     first_name: str
     last_name: str
+    password : str
     email: str
 
 
@@ -18,6 +19,7 @@ class UserDisplay(BaseModel):
     last_name: str
     meli_code: str
     email: str
+    is_admin: bool
 
 
     class Config:
