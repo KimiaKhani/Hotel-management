@@ -1,22 +1,20 @@
 from sqlalchemy import Column, Integer,Float,String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
-
+from sqlalchemy.orm import declarative_base, Mapped, mapped_column
 Base = declarative_base()
 
 #user table
 class User(Base):
     __tablename__ = 'user'
-    id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String, index=True)
-    last_name = Column(String, index=True)
-    username = Column(String)
-    password = Column(String)
-    email = Column(String)
-    is_admin = Column(Boolean)
-    # room_id = Column(Integer, ForeignKey('room.id'))
-    # room = relationship("Room", back_populates="user", uselist=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    first_name: Mapped[str] = mapped_column(String)
+    last_name: Mapped[str] = mapped_column(String)
+    email: Mapped[str] = mapped_column(String, unique=True, index=True)
+    meli_code: Mapped[str] = mapped_column(String, unique=True, index=True)
 
+
+    class Config:
+        orm_mode: True
 
 
 #room table
@@ -39,15 +37,15 @@ class Room_User(Base):
 
 class Reservation(Base):
     __tablename__ = 'reservations'
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    room_id = Column(Integer, ForeignKey('room.id'))
-    check_in = Column(DateTime)
-    check_out = Column(DateTime)
-    status = Column(String, default='pending')
-
-    user = relationship('User')
-    room = relationship('Room')
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    room_id: Mapped[int] = mapped_column(Integer)
+    check_in: Mapped[str] = mapped_column(String)
+    check_out: Mapped[str] = mapped_column(String)
+    first_name: Mapped[str] = mapped_column(String)
+    last_name: Mapped[str] = mapped_column(String)
+    email: Mapped[str] = mapped_column(String)
+    meli_code: Mapped[str] = mapped_column(String)
+  
 
 
 

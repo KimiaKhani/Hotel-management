@@ -6,18 +6,17 @@ from typing import Optional
 
 
 class UserBase(BaseModel):
-    username: str
+    meli_code: str
     first_name: str
     last_name: str
     email: str
-    password: str
 
 
 class UserDisplay(BaseModel):
     id: int
     first_name: str
     last_name: str
-    username: str
+    meli_code: str
     email: str
 
 
@@ -27,7 +26,7 @@ class UserDisplay(BaseModel):
 
 class UserAuth(BaseModel):
     id: int
-    username: str
+    meli_code: str
     email: str
 
 
@@ -39,7 +38,7 @@ class UserAuth(BaseModel):
 
 # user in post display and comment display
 class User(BaseModel):
-    username: str
+    meli_code: str
     email : str
 
     class Config:
@@ -66,7 +65,6 @@ class RoomDisplay(BaseModel):
 
 
 class ReservationBase(BaseModel):
-    user_id: int
     room_id: int
     check_in: datetime
     check_out: datetime
@@ -74,12 +72,15 @@ class ReservationBase(BaseModel):
 class ReservationCreate(ReservationBase):
     first_name: str
     last_name: str
+    email: str
+    meli_code: str
 
 class Reservation(ReservationBase):
     id: int
-    status: str
     first_name: str
     last_name: str
+    email: str
+    meli_code: str
 
     class Config:
         orm_mode = True
