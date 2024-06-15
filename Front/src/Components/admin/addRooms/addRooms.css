@@ -2,13 +2,8 @@
 .ta{
     width: 70vh;
 }
-.bh:hover{
-    background-color:var(--bhover);
-    color:black;
-  }
-  .bh{
-    background-color: var(--black);
-    color: aliceblue;
+
+  .b{
     font-weight: 500;
   }
 
@@ -25,6 +20,7 @@
 .card {
   animation: fadeInUp 0.5s ease-in-out;
 }
+
 
 @keyframes fadeInUp {
   from {

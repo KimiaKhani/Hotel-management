@@ -1,0 +1,10 @@
+
+  .room-title{
+
+    display: flex;
+    justify-content: center;
+  }
+  .b:hover{
+    background-color: var(--admin-text);
+    font-weight: 400;
+  }

@@ -3,7 +3,7 @@ import TextInput from "./TextInput";
 import './addRooms.css';
 import axios from 'axios';
 import { useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+
 const INPUTS = [
   { label: "Room ID", placeholder: "Room ID", name: "room_id", className: "col-12 col-md-12" },
   { label: "Room Type", placeholder: "Room Type", name: "room_type", className: "col-12 col-md-12" },
@@ -80,7 +80,7 @@ const AdmingAddRoomsPage = ({token}) => {
               <TextInput key={input.name} {...input} value={formData[input.name]} onChange={handleChange} />
             ))}
             <div className="col-12 text-center mt-3">
-              <button type="button" className="btn btn-outline-secondary bh w-50 w-md-auto" onClick={handleClick}>Add Room</button>
+              <button type="button" className="btn b w-50 w-md-auto " onClick={handleClick}>Add Room</button>
             </div>
           </form>
         </div>

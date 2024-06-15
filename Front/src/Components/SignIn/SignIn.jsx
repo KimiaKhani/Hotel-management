@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [signUpData, setSignUpData] = useState({
     username: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: ''
   });
@@ -63,7 +65,7 @@ const SignIn = () => {
         url: 'http://127.0.0.1:8000/token',
         data: qs.stringify({
           username: username,
-          password: password
+          password: password,
         }),
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -96,6 +98,8 @@ const SignIn = () => {
               <a href="#" className="icon"><i className="fab fa-linkedin-in"></i></a>
             </div>
             <input type="text" name="username" placeholder="UserName" value={signUpData.username} onChange={handleInputChange} />
+            <input type="text" name="first_name" placeholder="first name" value={signUpData.first_name} onChange={handleInputChange} />
+            <input type="text" name="last_name" placeholder="last name" value={signUpData.last_name} onChange={handleInputChange} />
             <input type="email" name="email" placeholder="Email" value={signUpData.email} onChange={handleInputChange} />
             <input type="password" name="password" placeholder="Password" value={signUpData.password} onChange={handleInputChange} />
             <button type="submit">Sign Up</button>

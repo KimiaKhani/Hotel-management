@@ -4,8 +4,8 @@ import AdminAllRoomsPage from "../rooms/adminRoom";
 import AdminAllCustomersPage from "../users/adminUsers";
 import AdmingAddRoomsPage from "../addRooms/AddRoom";
 import { useLocation } from 'react-router-dom';
-import Room from "../../emptyRooms/Rooms";
-import SearchBox from "../rooms/Searchbar";
+import Room from "../emptyRooms/Rooms";
+import SearchBox from "../../searchbar/Searchbar";
 
 const AdminDashboard = () => {
   const location = useLocation();
@@ -15,22 +15,44 @@ const AdminDashboard = () => {
   if (location.state) {
     token = location.state.token;
   }
-  console.log(token);
+  // console.log(token);
+  const handleClickDashboard =()=> setAsk(0);
   const handleClickUser = () => setAsk(1);
   const handleClickRooms = () => setAsk(2);
   const handleClickAddRoom = () => setAsk(3);
   const handleClickAddBooking = () => setAsk(4);
-
+  
   const renderContent = () => {
     switch(ask) {
       case 1:
-        return <AdminAllCustomersPage />;
+        return (<>
+          <div className="d-flex  justify-content-center align-items-center">
+            <SearchBox result={ask} token={token}></SearchBox>
+          </div>
+          <AdminAllCustomersPage />
+        </>);
       case 2:
-        return <AdminAllRoomsPage />;
+        return (<>
+          <div className="d-flex  justify-content-center align-items-center">
+            <SearchBox></SearchBox>
+          </div>
+          <AdminAllRoomsPage />
+        </>);
       case 3:
-        return <AdmingAddRoomsPage token={token} />;
+        return (<>
+          <div className="d-flex  justify-content-center align-items-center">
+            <SearchBox></SearchBox>
+          </div>
+          <AdmingAddRoomsPage token={token} />
+        </>);
+   
       case 4:
-        return <Room />;
+        return (<>
+          <div className="d-flex  justify-content-center align-items-center">
+            <SearchBox></SearchBox>
+          </div>
+          <Room/>
+        </>);
       default:
         return <h1 className="fw-bold" style={{marginTop:'20vh'}}>hi... 👋 <br/>Welcome to Admin Panel</h1>;
     }
@@ -41,7 +63,7 @@ const AdminDashboard = () => {
       <div className="bg-nav">
         <h3 className="bg-glight mb-3">BOOKING HOTEL</h3>
         <div>
-          <button className={`btn btn-outline-light dash mb-2 w-100 ${ask === 0 ? 'btn-active' : ''}`}>
+          <button className={`btn btn-outline-light dash mb-2 w-100 ${ask === 0 ? 'btn-active' : ''}`} onClick={handleClickDashboard}>
             Dashboard
           </button>
           <p className="bg-glight">Booking</p>
@@ -62,15 +84,10 @@ const AdminDashboard = () => {
           <button className={`btn btn-outline-light btn-sm mb-1 w-100 ${ask === 3 ? 'btn-active' : ''}`} onClick={handleClickAddRoom}>
             Add rooms
           </button>
-         
         </div>
-        
       </div>
    
       <div className="content-area">
-      <div className="d-flex  justify-content-center">
-     <SearchBox></SearchBox>
-     </div>
         {renderContent()}
       </div>
     </div>

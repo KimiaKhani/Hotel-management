@@ -1,37 +1,26 @@
 
-  body{
-    font-family: iran;
-   
-  }
+button.btn.btn-active {
+  background-color: var(--bhover);
+  color: #f8f9fa;
+}
 
-  .btn-active {
-    background-color: var(--bhover);
-    color:#f8f9fa;
-  }
-  
-  
-  .btn-success {
-    background-color:var(--green-20); 
-  }
-  .dash:hover{
-    background-color: var(--bhover);
-  }
-  
-  .btn-outline-light:hover{
-    background-color: var(--bhover);
-    color:#f8f9fa;
-  }
+
+/* button.btn.btn-outline-light:hover{
+  background-color: var(--bhover);
+  color: #f8f9fa;
+} */
+
+
   .bg-nav{
     background-color: var( --black);
+    padding: 20px;
+    overflow-y: auto; 
+    z-index: 1000; 
   }
   .bg-glight{
     color: var(--admin-text);
     font-weight: 600;
   }
-
-
-
-
 
 .admin-dashboard {
   display: flex;
@@ -39,25 +28,16 @@
   min-height: 100vh;
 }
 
-
-.bg-nav {
-  padding: 20px;
-  overflow-y: auto; 
-  z-index: 1000; 
-}
-
-/* Content area adjustments */
 .content-area {
-  padding: 40px;
+  padding: 90px;
   flex-grow: 1;
-  overflow-y: auto; /* Allow main content to scroll if needed */
+  overflow-y: auto;
 }
 
-/* Responsive adjustments */
 @media (min-width: 768px) {
-  /* On larger screens, set the sidebar to fixed and adjust layout */
+ 
   .admin-dashboard {
-    flex-direction: row; /* Switch to row layout for larger screens */
+    flex-direction: row; 
   }
 
   .bg-nav {
@@ -69,11 +49,11 @@
   }
 
   .content-area {
-    margin-left: 250px; /* Offset the main content by the sidebar's width */
+    margin-left: 250px;
   }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
   .bg-nav {
     width: 100%;

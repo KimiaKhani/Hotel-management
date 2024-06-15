@@ -7,7 +7,9 @@ Base = declarative_base()
 #user table
 class User(Base):
     __tablename__ = 'user'
-    id = Column(Integer, index=True, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
+    first_name = Column(String, index=True)
+    last_name = Column(String, index=True)
     username = Column(String)
     password = Column(String)
     email = Column(String)
@@ -36,16 +38,16 @@ class Room_User(Base):
 
 
 class Reservation(Base):
-    __tablename__ = "reservations"
-
+    __tablename__ = 'reservations'
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("user.id"))
-    room_id = Column(Integer, ForeignKey("room.id"))
-    start_date = Column(DateTime)
-    end_date = Column(DateTime)
-    status = Column(String, default="pending")
+    user_id = Column(Integer, ForeignKey('user.id'))
+    room_id = Column(Integer, ForeignKey('room.id'))
+    check_in = Column(DateTime)
+    check_out = Column(DateTime)
+    status = Column(String, default='pending')
 
-    user = relationship("User")
-    room = relationship("Room")
+    user = relationship('User')
+    room = relationship('Room')
+
 
 

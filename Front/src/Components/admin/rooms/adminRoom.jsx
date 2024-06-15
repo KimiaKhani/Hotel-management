@@ -7,7 +7,6 @@ const AdminAllRoomsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch rooms data from backend
   useEffect(() => {
     const fetchRooms = async () => {
       try {
