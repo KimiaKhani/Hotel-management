@@ -15,6 +15,8 @@ def create_user(request: UserBase, db: Session):
                             detail='This meli_code already exists')
 
     user = User(
+        first_name=request.first_name,
+        last_name=request.last_name,
         meli_code=request.meli_code,
         # password=Hash.bcrypt(request.password),
         email=request.email,

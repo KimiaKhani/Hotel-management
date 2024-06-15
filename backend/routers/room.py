@@ -10,10 +10,20 @@ from fastapi.exceptions import HTTPException
 
 router = APIRouter(prefix='/room', tags=['room'])
 
+<<<<<<< HEAD
 
 @router.get('/get_not_taken_rooms', response_model=List[RoomDisplay])
 def get_taken_rooms(db: Session = Depends(get_db)):
     return db_room.get_nottaken_rooms(db)
+=======
+@router.get('/get_all_rooms', response_model=List[RoomDisplay])
+def get_all_rooms(db: Session = Depends(get_db)):
+    return db_room.get_all_rooms_by_admin(db)
+
+@router.get('/get_notreserved_rooms', response_model=List[RoomDisplay])
+def get_all_rooms(db: Session = Depends(get_db)):
+    return db_room.get_notreserved_rooms_by_admin(db)
+>>>>>>> origin/main
 
 
 @router.get('/get_rooms_by_bednumber/{number}', response_model=List[RoomDisplay])
