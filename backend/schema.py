@@ -9,6 +9,7 @@ class UserBase(BaseModel):
     meli_code: str
     first_name: str
     last_name: str
+    password : str
     email: str
 
 

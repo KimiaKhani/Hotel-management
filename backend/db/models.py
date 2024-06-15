@@ -9,6 +9,7 @@ class User(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     first_name: Mapped[str] = mapped_column(String)
     last_name: Mapped[str] = mapped_column(String)
+    password:Mapped[int] = mapped_column(String)
     email: Mapped[str] = mapped_column(String, unique=True, index=True)
     meli_code: Mapped[str] = mapped_column(String, unique=True, index=True)
     is_admin :Mapped[bool]=mapped_column(Boolean)
