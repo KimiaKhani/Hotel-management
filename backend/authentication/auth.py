@@ -3,7 +3,7 @@ from fastapi import Depends, status
 from fastapi.exceptions import HTTPException
 from sqlalchemy.orm import Session
 from db.database import get_db
-from db.db_user import get_user_by_meli_code
+from db.db_user import get_admin_by_username
 from typing import Optional
 from datetime import datetime, timedelta
 from jose import jwt
@@ -38,15 +38,15 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 
     try:
         _dict = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        meli_code = _dict.get('sub')
+        username = _dict.get('sub')
 
-        if not meli_code:
+        if not username:
             raise error_credential
 
     except JWTError:
         raise error_credential
 
-    user = get_user_by_meli_code(meli_code, db)
+    user = get_admin_by_username(username, db)
 
     return user
 
@@ -59,21 +59,20 @@ def get_current_admin(token: str = Depends(oauth2_scheme), db: Session = Depends
 
     try:
         _dict = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        meli_code = _dict.get('sub')
+        username = _dict.get('sub')
 
-        if not meli_code:
+        if not username:
             raise error_credential
 
 
     except JWTError:
         raise error_credential
 
-    user = get_user_by_meli_code(meli_code, db)
+    admin = get_admin_by_username(username, db)
 
-    if user.is_admin == False:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail='Protected'
-        )
 
-    return user
+    if not admin:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail='admin not found !')
+
+    return admin

@@ -12,18 +12,18 @@ router = APIRouter(tags=['Authentication'])
 
 @router.post('/token')
 def get_token(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.meli_code == request.meli_code).first()
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='invalid meli_code')
+    admin = db.query(models.Admin).filter(models.Admin.username == request.username).first()
+    if not admin:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='invalid username')
 
-    if not Hash.verify(user.password, request.password):
+    if not Hash.verify(admin.password, request.password):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='invalid password')
 
-    access_token = auth.create_access_token(data={'sub': user.meli_code})
+    access_token = auth.create_access_token(data={'sub': admin.username})
 
     return {
         'access_token': access_token,
         'type_token': 'bearer',
-        'userID': user.id,
-        'meli_code': user.meli_code,
+        'userID': admin.id,
+        'username': admin.username,
     }

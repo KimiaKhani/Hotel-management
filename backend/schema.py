@@ -84,3 +84,25 @@ class Reservation(ReservationBase):
 
     class Config:
         orm_mode = True
+
+
+
+class AdminBase(BaseModel):
+    username: str
+    password: str
+
+
+class AdminDisplay(BaseModel):
+    username: str
+
+    class Config:
+        from_orm = True
+
+
+class AdminAuth(BaseModel):
+    id: int
+    username: str
+
+
+    class Config:
+        from_attributes = True

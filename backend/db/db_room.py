@@ -1,4 +1,4 @@
-from db.models import Room, User, Room_User
+from db.models import Room, User, Room_User,Admin, Reservation
 from schema import RoomBase
 from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
@@ -8,8 +8,8 @@ from fastapi import status
 
 #admin-----------------------------------------------------------------------------------
 def add_room(request: RoomBase, db :Session, admin_id: int):
-    user = db.query(User).filter(User.id == admin_id).first()
-    if user.is_admin == False:
+    admin = db.query(Admin).filter(Admin.id == admin_id).first()
+    if not admin:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
     new_room = Room(
@@ -25,9 +25,10 @@ def add_room(request: RoomBase, db :Session, admin_id: int):
 
 
 def delete_room(id: int, db: Session, admin_id: int):
-    user = db.query(User).filter(User.id == admin_id).first()
-    if user.is_admin == False:
+    admin = db.query(Admin).filter(Admin.id == admin_id).first()
+    if not admin:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+
     try:
         room = db.query(Room).filter(Room.id == id).first()
         if not room:
@@ -43,42 +44,38 @@ def delete_room(id: int, db: Session, admin_id: int):
 
 
 def get_room_by_admin(id: int, db: Session, admin_id: int):
-    user = db.query(User).filter(User.id == admin_id).first()
-    if user.is_admin == False:
+    admin = db.query(Admin).filter(Admin.id == admin_id).first()
+    if not admin:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
-    room = db.query(Room).filter(Room.id == id).first()
-    if not room:
+    reservation = db.query(Reservation).filter(Reservation.room_id== id).first()
+    if not reservation:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='room not found.')
 
-    if room.is_taken == True :
-        user = db.query(Room_User).filter(room.room_id == Room_User.room_id).first()
-    return room , user.meli_code
+
+    return reservation
 
 
-def get_user_by_admin(name: str, db: Session, admin_id: int):
-    user = db.query(User).filter(User.id == admin_id).first()
-    if user.is_admin == False:
+def get_user_by_admin(meli_code:int, db: Session, admin_id: int):
+    admin = db.query(Admin).filter(Admin.id == admin_id).first()
+    if not admin:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
-    user = db.query(User).filter(User.meli_code == name).first()
-    if not user:
+    reservation = db.query(Reservation).filter(Reservation.meli_code == meli_code).first()
+    if not reservation:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='user not found.')
 
-    room = db.query(Room_User).filter(user.user_id == Room_User.user_id)
-    if not room:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="this user hasn't booked any room")
-    
-    return room , user.meli_code
-
+    return reservation
 
 
 #user------------------------------------------------------------------------------------------
-def get_all_rooms_by_user(db: Session):
+
+def get_nottaken_rooms(db: Session):
     room = db.query(Room).filter(Room.is_taken==False).all()
     if not room:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='there is no empty room!')
     return room
+
 
 
 def get_rooms_by_bednumber(bed_number : int, db:Session):
