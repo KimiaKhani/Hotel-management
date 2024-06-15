@@ -74,11 +74,19 @@ def get_user_by_admin(name: str, db: Session, admin_id: int):
 
 
 #user------------------------------------------------------------------------------------------
-def get_all_rooms_by_user(db: Session):
+def get_all_rooms_by_admin(db: Session):
+    room = db.query(Room).all()
+    if not room:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='there is no room!')
+    return room
+
+
+def get_notreserved_rooms_by_admin(db: Session):
     room = db.query(Room).filter(Room.is_taken==False).all()
     if not room:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='there is no empty room!')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='there is no room!')
     return room
+
 
 
 def get_rooms_by_bednumber(bed_number : int, db:Session):
