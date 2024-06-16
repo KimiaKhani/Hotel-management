@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import './adminRooms.css';
 
-const AdminAllRoomsPage = () => {
+const ReservedRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,17 +9,23 @@ const AdminAllRoomsPage = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/room/get_all_rooms'); 
-        setRooms(response.data); 
-        setLoading(false); 
+        const response = await axios.get('http://127.0.0.1:8000/reservations');
+        console.log(response.data);
+        setRooms(response.data);
+        setLoading(false);
       } catch (error) {
         setError(error.message);
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
     fetchRooms();
   }, []);
+
+  const handleRowClick = (roomId) => {
+    console.log(`Room ID: ${roomId}`);
+    
+  };
 
   return (
     <div className="container mt-5">
@@ -33,11 +38,11 @@ const AdminAllRoomsPage = () => {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            {loading ? (
+            {loading? (
               <div className="text-center">
                 <p>Loading...</p>
               </div>
-            ) : error ? (
+            ) : error? (
               <div className="text-center">
                 <p>Error: {error}</p>
               </div>
@@ -46,20 +51,18 @@ const AdminAllRoomsPage = () => {
                 <thead className="bg-light">
                   <tr>
                     <th className="text-white" scope="col">Room ID</th>
-                    <th className="text-white" scope="col">Room Type</th>
-                    <th className="text-white" scope="col">Bed Count</th>
-                    <th className="text-white" scope="col">Price</th>
-                    <th className="text-white" scope="col">Status</th>
+                    <th className="text-white" scope="col">Check in</th>
+                    <th className="text-white" scope="col">Check out</th>
+                    <th className="text-white" scope="col">Room Owner</th>
                   </tr>
                 </thead>
                 <tbody>
                   {rooms.map((room, index) => (
-                    <tr key={index} className="bg-white">
-                      <td className="align-middle">{room.id}</td>
-                      <td className="align-middle">VIP</td>
-                      <td className="align-middle">{room.bed_number}</td>
-                      <td className="align-middle">{Number(room.price)} IRR</td>
-                      <td className="align-middle">{room.is_taken===true ? "not taken" : "taken"}</td>
+                    <tr key={index} className="bg-white" onClick={() => handleRowClick(room.id)}>
+                      <td className="align-middle">{room.room_id}</td>
+                      <td className="align-middle">{room.check_in}</td>
+                      <td className="align-middle">{room.check_out}</td>
+                      <td className="align-middle">{room.last_name}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -72,4 +75,4 @@ const AdminAllRoomsPage = () => {
   );
 };
 
-export default AdminAllRoomsPage;
+export default ReservedRooms;

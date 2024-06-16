@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './adminUsers.css';
-
+import Card from "./Usercard/Card";
 const tableDataRows = [
   ["1", "2", "Sara", "Alavi", "09907866554", "sara@gmail.com"],
   ["1", "2", "Mamad", "Rajabi", "98764452310", "mamad@gmail.com"],

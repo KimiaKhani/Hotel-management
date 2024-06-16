@@ -19,6 +19,18 @@ class User(Base):
         orm_mode: True
 
 
+
+class Admin(Base):
+    __tablename__ = 'admin'
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    username : Mapped[str] = mapped_column(String)
+    password : Mapped[str] = mapped_column(String)
+    # is_admin : Mapped[bool] = mapped_column(Boolean)
+
+    class Config:
+        orm_mode: True
+
+
 #room table
 class Room(Base):
     __tablename__ = 'room'

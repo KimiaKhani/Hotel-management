@@ -7,7 +7,7 @@
     font-weight: 500;
   }
 
-  .in{
+  input.in{
     background-color:  rgba(0, 126, 133,0.05);
   }
   .in::placeholder{

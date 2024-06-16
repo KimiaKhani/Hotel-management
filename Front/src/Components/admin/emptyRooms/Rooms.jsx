@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RoomCard from './RoomCards';
-import './Room.css';
+
 import axios from 'axios';
 
 
@@ -15,7 +15,7 @@ const Room= () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/room/get_all_rooms'); 
+        const response = await axios.get('http://127.0.0.1:8000/room/get_notreserved_rooms'); 
         setRooms(response.data); 
         setLoading(false); 
         if (response.status === 200) {
@@ -24,7 +24,6 @@ const Room= () => {
           setLoading(false);
         }
       } catch (error) {
-        console.log("shashhhhhhhhhhhh");
         console.log(error);
         setError(error.message);
         setLoading(false); 
@@ -34,7 +33,7 @@ const Room= () => {
     fetchRooms();
   }, []);
   return (
-    <div className="container my-4">
+    <div className="container col-md-10 my-4">
       {loading==true ? (<h1 className='my-5 room-title fw-bold'>Empty Rooms</h1>) : <h1 className='my-5 room-title'>All rooms are already booked.</h1>}
       
       {rooms.map((room, index) => (

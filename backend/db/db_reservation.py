@@ -1,7 +1,7 @@
 from sqlalchemy import distinct
 from sqlalchemy.orm import Session
 from db import models
-from db.models import Reservation, User
+from db.models import Reservation, User, Room
 from schema import ReservationCreate
 
 def create_reservation(db: Session, reservation: ReservationCreate):
@@ -14,6 +14,15 @@ def create_reservation(db: Session, reservation: ReservationCreate):
         email=reservation.email,
         meli_code=reservation.meli_code
     )
+
+    room = db.query(Room).filter(Room.id==reservation.room_id).first()
+    if room:
+        room.is_taken = True
+        db.add(room)
+        db.commit()
+        db.refresh(room)
+
+
     db.add(db_reservation)
     db.commit()
     db.refresh(db_reservation)
