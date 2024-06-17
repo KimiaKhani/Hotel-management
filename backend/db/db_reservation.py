@@ -49,7 +49,7 @@ def get_all_users(db: Session):
             first_name=result[1],
             last_name=result[2],
             email=result[3],
-            meli_code=result[4]
+            meli_code=result[4],
         ) for result in results
     ]
     return users

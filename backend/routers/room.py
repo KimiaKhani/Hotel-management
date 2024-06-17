@@ -29,8 +29,8 @@ def get_rooms_by_bednumber(bed_num : int, db: Session = Depends(get_db)):
 
 
 @router.get('/get_rooms_by_user/{meli_code}', response_model=List[RoomDisplay])
-def get_user_by_admin(meli_code:int,  db: Session = Depends(get_db)):
-    return db_room.get_user_by_admin(meli_code, db)
+def get_user_by_admin(meli_code:int,  db: Session = Depends(get_db), admin: UserAuth = Depends(auth.get_current_admin)):
+    return db_room.get_user_by_admin(meli_code, db, admin.id)
 
 @router.get('/get_all_rooms', response_model=List[RoomDisplay])
 def get_all_rooms(db: Session = Depends(get_db)):
