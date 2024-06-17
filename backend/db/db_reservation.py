@@ -3,6 +3,9 @@ from sqlalchemy.orm import Session
 from db import models
 from db.models import Reservation, User, Room
 from schema import ReservationCreate
+from fastapi.exceptions import HTTPException
+from fastapi import status
+
 
 def create_reservation(db: Session, reservation: ReservationCreate):
     db_reservation = Reservation(
@@ -17,6 +20,9 @@ def create_reservation(db: Session, reservation: ReservationCreate):
 
     room = db.query(Room).filter(Room.id==reservation.room_id).first()
     if room:
+        if room.is_taken:
+            return HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE,
+                                 detail='Room already occupied')
         room.is_taken = True
         db.add(room)
         db.commit()
