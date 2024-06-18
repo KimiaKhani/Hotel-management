@@ -11,7 +11,6 @@ const RoomCard = ({ room }) => {
   
   const handleReserveClick = () => setIsActive(true)
 const renderContent = ()=>{
-  // console.log(room.id);
   return ( <>
     <ReserveForm id={room.id}></ReserveForm>
     </>)

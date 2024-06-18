@@ -12,9 +12,6 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [signUpData, setSignUpData] = useState({
     username: '',
-    first_name: '',
-    last_name: '',
-    email: '',
     password: ''
   });
 
@@ -98,9 +95,9 @@ const SignIn = () => {
               <a href="#" className="icon"><i className="fab fa-linkedin-in"></i></a>
             </div>
             <input type="text" name="username" placeholder="UserName" value={signUpData.username} onChange={handleInputChange} />
-            <input type="text" name="first_name" placeholder="first name" value={signUpData.first_name} onChange={handleInputChange} />
+            {/* <input type="text" name="first_name" placeholder="first name" value={signUpData.first_name} onChange={handleInputChange} />
             <input type="text" name="last_name" placeholder="last name" value={signUpData.last_name} onChange={handleInputChange} />
-            <input type="email" name="email" placeholder="Email" value={signUpData.email} onChange={handleInputChange} />
+            <input type="email" name="email" placeholder="Email" value={signUpData.email} onChange={handleInputChange} /> */}
             <input type="password" name="password" placeholder="Password" value={signUpData.password} onChange={handleInputChange} />
             <button type="submit">Sign Up</button>
           </form>

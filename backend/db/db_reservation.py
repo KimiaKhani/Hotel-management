@@ -49,13 +49,19 @@ def get_all_users(db: Session):
         Reservation.meli_code
     ).distinct().all()
     
-    users = [
-        User(
+    meli_codes = [result[4] for result in results]
+    meli_codes = list(set(meli_codes))
+    users = []
+    for result in results:
+        if result[4] in meli_codes:
+            users.append(User(
             id = result[0],
             first_name=result[1],
             last_name=result[2],
             email=result[3],
-            meli_code=result[4]
-        ) for result in results
-    ]
+            meli_code=result[4],
+            ))
+            i = meli_codes.index(result[4])
+            meli_codes.pop(i)
+        
     return users

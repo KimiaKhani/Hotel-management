@@ -19,7 +19,7 @@ class UserDisplay(BaseModel):
     last_name: str
     meli_code: str
     email: str
-    is_admin: bool
+    #is_admin: bool
 
 
     class Config:

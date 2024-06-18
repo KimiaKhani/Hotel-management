@@ -20,7 +20,7 @@ def create_user(request: UserBase, db: Session):
         meli_code=request.meli_code,
         # password=Hash.bcrypt(request.password),
         email=request.email,
-        is_admin=False,
+        #is_admin=False,
         # room_id = None
     )
     db.add(user)
