@@ -95,3 +95,17 @@ def get_rooms_by_bednumber(bed_number : int, db:Session):
 
 def get_all_rooms(db: Session):
     return db.query(Room).all()
+
+
+
+def get_rooms_by_meli_code(meli_code: str, db: Session):
+    reservations = db.query(Reservation).filter(Reservation.meli_code == meli_code).all()
+    if not reservations:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='No reservations found for this meli_code')
+
+    room_ids = [reservation.room_id for reservation in reservations]
+    rooms = db.query(Room).filter(Room.id.in_(room_ids)).all()
+    if not rooms:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='No rooms found for the provided meli_code')
+
+    return rooms

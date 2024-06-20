@@ -27,10 +27,9 @@ def get_notreserved_rooms(db: Session = Depends(get_db)):
 def get_rooms_by_bednumber(bed_num : int, db: Session = Depends(get_db)):
     return db_room.get_rooms_by_bednumber(bed_num, db)
 
-
-@router.get('/get_rooms_by_user/{meli_code}', response_model=List[RoomDisplay])
-def get_user_by_admin(meli_code:int,  db: Session = Depends(get_db), admin: UserAuth = Depends(auth.get_current_admin)):
-    return db_room.get_user_by_admin(meli_code, db, admin.id)
+@router.get('/get_rooms_by_meli_code/{meli_code}', response_model=List[RoomDisplay])
+def get_rooms_by_meli_code(meli_code: str, db: Session = Depends(get_db), current_user: UserAuth = Depends(auth.get_current_user)):
+    return db_room.get_rooms_by_meli_code(meli_code, db)
 
 @router.get('/get_all_rooms', response_model=List[RoomDisplay])
 def get_all_rooms(db: Session = Depends(get_db)):
